@@ -101,22 +101,23 @@ const Stock = () => {
 
   return (
     <div>
-      <h2>Assets</h2>
+      
       <ul>
         {assetDetails.map((asset, index) => (
           <li key={index}>
-            <BetCard 
-              address={asset.address}
-              name={asset.name} 
-              symbol={asset.symbol}
-              opening={new Date(asset.openingTime.toNumber() * 1000).toString()} 
-              closing={new Date(asset.closingTime.toNumber() * 1000).toString()} 
-              result={new Date(asset.resultTime.toNumber() * 1000).toString()} 
-              Bet_Price={ethers.utils.formatEther(asset.betPrice.toString())} 
-              provider={provider}
-              signer={signer}
-              contractBet={contractBet}
-            />
+            
+              <BetCard 
+                address={asset.address}
+                name={asset.name} 
+                symbol={asset.symbol}
+                opening={new Date(asset.openingTime.toNumber() * 1000).toString()} 
+                closing={new Date(asset.closingTime.toNumber() * 1000).toString()} 
+                result={new Date(asset.resultTime.toNumber() * 1000).toString()} 
+                Bet_Price={ethers.utils.formatEther(asset.betPrice.toString())} 
+                provider={provider}
+                signer={signer}
+                contractBet={contractBet}
+              />        
           </li>
         ))}
       </ul>

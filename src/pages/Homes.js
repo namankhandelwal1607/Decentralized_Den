@@ -70,7 +70,7 @@ const HomePage = () => {
         <div>
           <Typing
             text={[
-              "Welcome to TradeZen,",
+              "Welcome to Decentralized Den,",
             ]}
             speed={100}
             eraseSpeed={50}

@@ -20,7 +20,7 @@ const router = createBrowserRouter([
     children:[
       {
         path:"/",
-        element: <Crypto />,
+        element: <Homes />,
         children: [
           {
             path:":coinId",
@@ -60,8 +60,8 @@ const router = createBrowserRouter([
       },
 
       {
-        path:"/homes",
-        element: <Homes />,
+        path:"/crypto",
+        element: <Crypto />,
         children: [
           {
             path:":coinId",

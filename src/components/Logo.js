@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logoSvg from "../assets/logo.svg";
+import logo from '../assets/Decentralized_Den-removebg-preview.png'
 
 const Logo = () => {
   return (
@@ -11,8 +11,8 @@ const Logo = () => {
 text-lg text-cyan flex items-center
      "
     >
-      <img src={logoSvg} alt="CryptoBucks" />
-      <span>CryptoBucks</span>
+      <img src={logo} alt="CryptoBucks" className="w-40 h-40 -m-16" />
+      <i><span className="ml-6 text-xl font-serif">Decentralized Den</span></i>
     </Link>
   );
 };

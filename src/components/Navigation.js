@@ -37,8 +37,9 @@ const Navigation = () => {
   return (
     <div className="relative w-full mt-16">
       <nav className="w-[40%] mx-auto flex justify-around align-middle border border-cyan rounded-lg">
-        <NavLink
-          to="/homes"
+      <NavLink
+          to="/"
+          end
           className={({ isActive }) =>
             `w-full text-base text-center font-nunito m-2.5 ${
               isActive
@@ -64,8 +65,7 @@ const Navigation = () => {
         </NavLink>
 
         <NavLink
-          to="/"
-          end
+          to="/crypto"
           className={({ isActive }) =>
             `w-full text-base text-center font-nunito m-2.5 ${
               isActive

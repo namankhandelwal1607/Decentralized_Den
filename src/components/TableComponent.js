@@ -91,13 +91,13 @@ const TableComponent = () => {
                         alt={data.name}
                       />
                       <span>
-                        <Link to={`/${data.id}`} className="cursor-pointer">
+                        <Link to={`/crypto/${data.id}`} className="cursor-pointer">
                           {data.symbol}
                         </Link>
                       </span>
                     </td>
                     <td className="py-4">
-                      <Link to={`/${data.id}`} className="cursor-pointer">
+                      <Link to={`/crypto/${data.id}`} className="cursor-pointer">
                         {data.name}
                       </Link>
                     </td>
