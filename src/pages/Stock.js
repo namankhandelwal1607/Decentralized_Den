@@ -1,17 +1,17 @@
-// src/components/Stock.js
-
 import React, { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import BetCard from "../components/BetCard";
 import abiAssetManager from "../contracts/AssetManager.json";
 import abiBet from "../contracts/Bet.json";
+import abiPriceFeed from "../contracts/PriceFeed.json";
 
 const Stock = () => {
   const [state, setState] = useState({
     provider: null,
     signer: null,
     contractAssetManager: null,
-    contractBet: null
+    contractBet: null,
+    contractPriceFeed: null
   });
   const [account, setAccount] = useState("None");
   const [isConnecting, setIsConnecting] = useState(false);
@@ -25,14 +25,16 @@ const Stock = () => {
     betPrice: 0,
   });
 
-  const { provider, signer, contractAssetManager, contractBet } = state;
+  const { provider, signer, contractAssetManager, contractBet, contractPriceFeed } = state;
 
   useEffect(() => {
     const connectWallet = async () => {
-      const contractAddressAssetManager = "0x96b09600075699f681ae10367387AB06dd07b63f";
+      const contractAddressAssetManager = "0x19260f944312E654BC72442f80635AAf46887Ae4";
       const contractABIAssetManager = abiAssetManager.abi;
-      const contractAddressBet = "0x570C8C57FBb06CA82ED60a7F9f54F418C9CFA744";
+      const contractAddressBet = "0x29b1d1708B31D839904b991455af4513b05DA2b2";
       const contractABIBet = abiBet.abi;
+      const contractAddressPriceFeed = "0x9392Ab2205e584c032ebf3c693baCdCDCebb6204";
+      const contractABIPriceFeed= abiPriceFeed.abi;
 
       try {
         const { ethereum } = window;
@@ -48,8 +50,9 @@ const Stock = () => {
             const signer = provider.getSigner();
             const contractAssetManager = new ethers.Contract(contractAddressAssetManager, contractABIAssetManager, signer);
             const contractBet = new ethers.Contract(contractAddressBet, contractABIBet, signer);
+            const contractPriceFeed = new ethers.Contract(contractAddressPriceFeed, contractABIPriceFeed, signer);
 
-            setState({ provider, signer, contractAssetManager, contractBet });
+            setState({ provider, signer, contractAssetManager, contractBet, contractPriceFeed });
             ethereum.on("chainChanged", () => window.location.reload());
             ethereum.on("accountsChanged", () => window.location.reload());
           }
@@ -101,23 +104,24 @@ const Stock = () => {
 
   return (
     <div>
-      
       <ul>
-        {assetDetails.map((asset, index) => (
+        {assetDetails
+          .filter(asset => asset.closingTime.toNumber() * 1000 > Date.now())
+          .map((asset, index) => (
           <li key={index}>
-            
-              <BetCard 
-                address={asset.address}
-                name={asset.name} 
-                symbol={asset.symbol}
-                opening={new Date(asset.openingTime.toNumber() * 1000).toString()} 
-                closing={new Date(asset.closingTime.toNumber() * 1000).toString()} 
-                result={new Date(asset.resultTime.toNumber() * 1000).toString()} 
-                Bet_Price={ethers.utils.formatEther(asset.betPrice.toString())} 
-                provider={provider}
-                signer={signer}
-                contractBet={contractBet}
-              />        
+            <BetCard 
+              address={asset.address}
+              name={asset.name} 
+              symbol={asset.symbol}
+              opening={new Date(asset.openingTime.toNumber() * 1000).toString()} 
+              closing={new Date(asset.closingTime.toNumber() * 1000).toString()} 
+              result={new Date(asset.resultTime.toNumber() * 1000).toString()} 
+              Bet_Price={ethers.utils.formatEther(asset.betPrice.toString())} 
+              provider={provider}
+              signer={signer}
+              contractBet={contractBet}
+              contractPriceFeed={contractPriceFeed}
+            />        
           </li>
         ))}
       </ul>

@@ -20,9 +20,9 @@ const Saved = () => {
 
   useEffect(() => {
     const connectWallet = async () => {
-      const contractAddressAssetManager = "0x96b09600075699f681ae10367387AB06dd07b63f";
+      const contractAddressAssetManager = "0x19260f944312E654BC72442f80635AAf46887Ae4";
       const contractABIAssetManager = abiAssetManager.abi;
-      const contractAddressBet = "0x570C8C57FBb06CA82ED60a7F9f54F418C9CFA744";
+      const contractAddressBet = "0x29b1d1708B31D839904b991455af4513b05DA2b2";
       const contractABIBet = abiBet.abi;
 
       try {

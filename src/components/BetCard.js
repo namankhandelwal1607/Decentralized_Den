@@ -1,24 +1,27 @@
-// src/components/BetCard.js
-
 import React, { useEffect, useState } from 'react';
 import { ethers } from 'ethers';
 import Popup from './Popup'; // Adjust the import path as necessary
 
 const BetCard = (props) => {
-  const { provider, signer, contractBet } = props;
+  const { provider, signer, contractBet, contractPriceFeed } = props;
   const [price, setPrice] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [estimatedPrice, setEstimatedPrice] = useState('');
 
   useEffect(() => {
     const fetchCoinData = async () => {
-      if (props.name) {
-        // Fetch coin data (implement your logic here)
+      if (props.name && contractPriceFeed) {
+        try {
+          const latestPrice = await contractPriceFeed.getLatestPrice(props.symbol);
+          setPrice(latestPrice.toString());
+        } catch (error) {
+          console.error('Error fetching price:', error);
+        }
       }
     };
 
     fetchCoinData();
-  }, [props.name]);
+  }, [props.name, contractPriceFeed]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -51,7 +54,7 @@ const BetCard = (props) => {
       setIsPopupOpen(false);
     }
   };
-
+  
   return (
     <div className="m-5">
       <div className="bg-gray-200 shadow-md rounded-lg p-8 w-full max-w-md">
@@ -81,30 +84,37 @@ const BetCard = (props) => {
             <label className='text-cyan mx-2'>{props.result}</label>
           </div>
           <div className="mb-2 flex font-bold">
-            <label className="block text-white text-sm font-bold mb-2" htmlFor="Bet_Price">Bet Price:</label>
+            <label className="block text-white text-sm font-bold mb-2" htmlFor="betPrice">Bet Price: </label>
             <label className='text-cyan mx-2'>{props.Bet_Price}</label>
           </div>
-          
-          <div className="flex items-center justify-between">
-            <button
-              type="button"
-              onClick={handleBetClick}
-              className="bg-cyan text-black hover:text-white hover:bg-gray-100 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            >
-              Place Bet
-            </button>
-          </div>
+          <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onClick={handleBetClick}>
+            Place Bet
+          </button>
         </form>
-
-        {isPopupOpen && (
-          <Popup
-            estimatedPrice={estimatedPrice}
-            setEstimatedPrice={setEstimatedPrice}
-            onClose={handleClosePopup}
-            onSubmit={handlePopupSubmit}
-          />
-        )}
       </div>
+      {isPopupOpen && (
+  <Popup
+    onClose={handleClosePopup}
+    estimatedPrice={estimatedPrice}
+    setEstimatedPrice={setEstimatedPrice}  // Ensure this is correctly passed
+    onSubmit={handlePopupSubmit}
+  >
+    <form onSubmit={handlePopupSubmit}>
+      <label className="block text-black text-sm font-bold mb-2">Enter estimated price:</label>
+      <input
+        type="number"
+        value={estimatedPrice}
+        onChange={(e) => setEstimatedPrice(e.target.value)}  // Use setEstimatedPrice to update state
+        className="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
+        required
+      />
+      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-4" type="submit">
+        Submit
+      </button>
+    </form>
+  </Popup>
+)}
+
     </div>
   );
 };
