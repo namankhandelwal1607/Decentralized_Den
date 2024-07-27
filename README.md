@@ -1,6 +1,8 @@
-Problem that this Decentralized Den Solves:
+######Problem that this Decentralized Den Solves:
+
 In today’s investment landscape, analyzing stock and cryptocurrency price trends is crucial but often complex. To address this, we propose a decentralized application (DApp) that gamifies cryptocurrency price predictions. Users will invest Ethereum (ETH) based on their forecasts of future cryptocurrency prices. Accurate predictions will earn users rewards exceeding their initial investment. This platform combines the excitement of gaming with crypto markets, offering an engaging way to test prediction skills and earn rewards. Our goals are to provide an engaging experience, reward accuracy, ensure transparency, and create an intuitive user interface.
-How to use this DApp?
+
+##How to use this DApp?
 
 ***Landing page***
 ![image](https://github.com/user-attachments/assets/2a30a135-33c5-4cf5-aa2d-eb6a92aa01e9)
