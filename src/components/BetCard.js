@@ -56,7 +56,7 @@ const BetCard = (props) => {
   };
   
   return (
-    <div className="m-5">
+    <div className="m-5 flex justify-start text-wrap">
       <div className="bg-gray-200 shadow-md rounded-lg p-8 w-full max-w-md">
         <form onSubmit={handleSubmit}>
           <div className="mb-2 flex font-bold">
@@ -87,7 +87,7 @@ const BetCard = (props) => {
             <label className="block text-white text-sm font-bold mb-2" htmlFor="betPrice">Bet Price: </label>
             <label className='text-cyan mx-2'>{props.Bet_Price}</label>
           </div>
-          <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onClick={handleBetClick}>
+          <button className="bg-cyan hover:bg-teal-500 text-black transition-colors duration-300 ease-in-out font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onClick={handleBetClick}>
             Place Bet
           </button>
         </form>
@@ -96,7 +96,7 @@ const BetCard = (props) => {
   <Popup
     onClose={handleClosePopup}
     estimatedPrice={estimatedPrice}
-    setEstimatedPrice={setEstimatedPrice}  // Ensure this is correctly passed
+    setEstimatedPrice={setEstimatedPrice}
     onSubmit={handlePopupSubmit}
   >
     <form onSubmit={handlePopupSubmit}>

@@ -26,14 +26,14 @@ const Popup = ({ estimatedPrice, setEstimatedPrice, onClose, onSubmit }) => {
           <div className="flex items-center justify-between mt-4">
             <button
               type="submit"
-              className="bg-cyan text-black hover:bg-gray-100 hover:text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-cyan-400"
+              className="bg-cyan text-black hover:bg-teal-500 transition-colors duration-300 ease-in-out font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-cyan-400"
             >
               Submit
             </button>
             <button
               type="button"
               onClick={onClose}
-              className="bg-red hover:bg-red_700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-red-400"
+              className="bg-red hover:bg-red_700 text-white transition-colors duration-300 ease-in-out font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-red-400"
             >
               Close
             </button>

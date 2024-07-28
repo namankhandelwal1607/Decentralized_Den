@@ -224,7 +224,7 @@ const Footer = () => {
         </a>
       </div>
       <p className="text-[14px] mt-2">
-        © {new Date().getFullYear()} LNM TradeZen. All Rights Reserved.
+        © {new Date().getFullYear()} LNM Decentralized Den. All Rights Reserved.
       </p>
     </footer>
   );
