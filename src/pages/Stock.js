@@ -31,7 +31,7 @@ const Stock = () => {
     const connectWallet = async () => {
       const contractAddressAssetManager = "0x19260f944312E654BC72442f80635AAf46887Ae4";
       const contractABIAssetManager = abiAssetManager.abi;
-      const contractAddressBet = "0x29b1d1708B31D839904b991455af4513b05DA2b2";
+      const contractAddressBet = "0xd71DB4e92850F57ab51b45FD53c9471546fA9805";
       const contractABIBet = abiBet.abi;
       const contractAddressPriceFeed = "0x9392Ab2205e584c032ebf3c693baCdCDCebb6204";
       const contractABIPriceFeed= abiPriceFeed.abi;
